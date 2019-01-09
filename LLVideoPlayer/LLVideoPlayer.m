@@ -582,6 +582,15 @@ typedef void (^VoidBlock) (void);
     });
 }
 
+- (Float64)currentProgress
+{
+    if (self.avPlayerItem != nil)
+    {
+        return CMTimeGetSeconds(self.avPlayerItem.currentTime) / CMTimeGetSeconds(self.avPlayerItem.duration);
+    }
+    return 0;
+}
+
 #pragma mark - Notifications
 
 - (void)periodicTimeObserver:(CMTime)time
@@ -611,7 +620,7 @@ typedef void (^VoidBlock) (void);
     self.lastFrameTime = thisSecond;
     */
     if ([self.delegate respondsToSelector:@selector(videoPlayer:didPlayFrame:)]) {
-        [self.delegate videoPlayer:self didPlayFrame:timeInSeconds];
+        [self.delegate videoPlayer:self didPlayFrame:[self currentProgress]];
     }
 }
 
