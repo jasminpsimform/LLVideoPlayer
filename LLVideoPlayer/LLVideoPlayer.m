@@ -603,13 +603,13 @@ typedef void (^VoidBlock) (void);
     if (self.state != LLVideoPlayerStateContentPlaying) {
         return;
     }
-    
+    /* For 1 second delay
     NSInteger thisSecond = (NSInteger)(timeInSeconds + 0.5f);
     if (thisSecond == self.lastFrameTime) {
         return;
     }
     self.lastFrameTime = thisSecond;
-    
+    */
     if ([self.delegate respondsToSelector:@selector(videoPlayer:didPlayFrame:)]) {
         [self.delegate videoPlayer:self didPlayFrame:timeInSeconds];
     }
